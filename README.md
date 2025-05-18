@@ -4,7 +4,7 @@ A hobbyist OS built for understanding
 
 ## About
 
-As a sophomore computer science student, I felt an urge to understand some of the more low-level things that our systems do. There's no better way to understand exactly what things do than to build them, so I decided that in pursuit of an understanding of exactly how operating systems work, I'd implement my own. I also decided to record the things I learned along the way—check out the [`reflections.md`](./reflections.md) file!
+As a sophomore computer science student, I felt an urge to understand some of the more low-level things that our systems do. There's no better way to understand exactly what things do than to build them, so I decided that in pursuit of an understanding of exactly how operating systems work, I'd implement my own. I also decided to record the things I learned along the way—check out the [`devlog.md`](./devlog.md) file!
 
 The operating system itself is designed to run in `QEMU` and is compiled in x86 assembly.
 
