@@ -8,6 +8,12 @@ Today, I had a relatively straightforward task in front of me: I began to develo
 
 Also, the kernel exceeded 1 sector, so I had to modify the bootloader to boot the entire thing. Things are taking shape, and they look pretty cool!
 
+### Next on the Chopping block
+
+- screen scrolling
+- keyboard driver
+- prototype shell
+
 ## Bootloaders (May 17, 2025)
 
 I knew when I began this quest that one of the most curious parts of OS development would come almost immediately: the **bootloader**. How does the kernel get into memory, and what calls its `main` method? Answer: the bootloader.
