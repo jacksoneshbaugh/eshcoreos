@@ -1,6 +1,12 @@
-# Reflections
+# Development Log
 
 The whole purpose of this project is for me to learn, so here's where I'll (undoubtedly imperfectly) summarize what I'm learning as I work on the project.
+
+## Console Drivers (May 18, 2025)
+
+Today, I had a relatively straightforward task in front of me: I began to develop the console drivers for the kernel. Specifically, I had to write my own print function, and all the other things I'd need to get there. This included some simpler functions and some more complex ones. Specifically, the `inb` and `outb` functions were tough—because I didn't even know I needed them. These are used to write bytes to and read bytes from I/O ports. I needed this functionality to disable the blinking cursor. All in all, I learned how powerful inline assembly can really be, and (somewhat) how to control the I/O controller using C.
+
+Also, the kernel exceeded 1 sector, so I had to modify the bootloader to boot the entire thing. Things are taking shape, and they look pretty cool!
 
 ## Bootloaders (May 17, 2025)
 

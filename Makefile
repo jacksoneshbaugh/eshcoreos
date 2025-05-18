@@ -9,6 +9,9 @@ OBJCOPY = x86_64-elf-objcopy		# objcopy instance
 CFLAGS = -ffreestanding -m32 -O0 -Wall -Wextra -nostdlib
 LDFLAGS = -T linker.ld -m elf_i386 -z max-page-size=0x1000
 
+C_SOURCES = $(wildcard *.c)
+C_OBJECTS = $(C_SOURCES:.c=.o)
+
 # Default target
 all: os-image.bin
 
@@ -20,13 +23,13 @@ boot.bin: boot.asm
 kernel_entry.o: kernel_entry.s
 	$(AS) --32 kernel_entry.s -o kernel_entry.o
 
-# Compile the kernel
-kernel.o: kernel.c
-	$(CC) $(CFLAGS) -c kernel.c -o kernel.o
+# Compile all .c files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Link the kernel
-kernel.bin: kernel_entry.o kernel.o
-	$(LD) $(LDFLAGS) -o kernel.elf kernel_entry.o kernel.o
+# Link the kernel together
+kernel.bin: kernel_entry.o $(C_OBJECTS)
+	$(LD) $(LDFLAGS) -o kernel.elf kernel_entry.o $(C_OBJECTS)
 	$(OBJCOPY) -O binary --set-start=0x10000 kernel.elf kernel.bin
 
 # Combine bootloader and kernel

@@ -7,7 +7,7 @@ ORG 0x7c00
 ; Constants for kernel loading
 KERNEL_SEGMENT equ 0x1000   ; Segment to load kernel (0x1000:0 = 0x10000)
 KERNEL_OFFSET  equ 0x0000   ; Offset within segment
-KERNEL_SECTORS equ 1        ; Kernel size in sectors
+KERNEL_SECTORS equ 2        ; Kernel size in sectors
 START_SECTOR   equ 2        ; First sector of kernel
 
 start:
