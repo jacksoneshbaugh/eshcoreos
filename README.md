@@ -56,4 +56,4 @@ eshcoreos currently boots into 32-bit protected mode, writes to VGA text memory,
 
 ## About Me
 
-My name is Jackson Eshbaugh, and I'm a passionate teacher-researcher studying computer science and French at Lafayette College. It is my goal to join academia and contribute to the conversation of science while inspiring and guiding future students through the wonderful world of computer science. You can read more about me, my research interests, and my work on my [website](https://jacksoneshbaugh.github.io).
+My name is Jackson Eshbaugh, and I'm a passionate student researcher studying computer science and French at Lafayette College. It is my goal to join academia and contribute to the conversation of science while inspiring and guiding future students through the wonderful world of computer science. You can read more about me, my research interests, and my work on my [website](https://jacksoneshbaugh.github.io).
