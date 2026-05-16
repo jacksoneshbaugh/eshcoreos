@@ -2,7 +2,7 @@
 // &copy; Jackson Eshbaugh, 2025
 
 #include "console.h"
-#include "utils.h"
+#include "ports.h"
 
 #define VGA_ADDRESS 0xb8000
 #define VGA_WIDTH 80
@@ -44,11 +44,19 @@ void putChar(char c) {
       col = 0;
       row++;
     }
+  }
 
-    if(row >= VGA_HEIGHT) {
-      // TODO: Implement scrolling later
-      row = 0;
+  if(row >= VGA_HEIGHT) {
+    // scroll up by one row
+    const int row_size = VGA_WIDTH;
+    const int total = VGA_WIDTH * VGA_HEIGHT;
+    for(int i = 0; i < total - row_size; i++) {
+      vga[i] = vga[i + row_size];
     }
+    for(int i = total - row_size; i < total; i++) {
+      vga[i] = (color << 8) | ' ';
+    }
+    row = VGA_HEIGHT - 1;
   }
 }
 
@@ -78,4 +86,3 @@ void disableCursor(void) {
     outb(0x3D4, 0x0A);
     outb(0x3D5, 0x20);  // Set cursor start bit 5 (bit 5 = disable)
 }
-

@@ -11,6 +11,9 @@
 - [x] VGA text output (80×25, colored)
 - [x] Modular console driver (`print()`, `putchar()`)
 - [x] Hardware cursor management
+- [x] IDT (Interrupt Descriptor Table)
+- [x] PIC remapping for hardware IRQs
+- [x] PIT timer interrupt heartbeat
 
 ---
 
@@ -26,8 +29,7 @@
 
 ## Processes and Multitasking
 
-- [ ] IDT (Interrupt Descriptor Table)
-- [ ] Timer interrupt handler (PIT, IRQ0)
+- [x] Timer interrupt handler (PIT, IRQ0)
 - [ ] Context switch logic
 - [ ] Basic process control block (PCB)
 - [ ] Cooperative multitasking
@@ -67,7 +69,7 @@
 ## Dev and UX Tools
 
 - [x] Makefile-based build system
-- [ ] `make run` support for QEMU
+- [x] `make run` support for QEMU
 - [ ] `make iso` for bootable CD-ROM
 - [ ] GDB integration (`make debug`)
 - [ ] Simple kernel debugger (`kdebug>`)

@@ -7,7 +7,9 @@ ORG 0x7c00
 ; Constants for kernel loading
 KERNEL_SEGMENT equ 0x1000   ; Segment to load kernel (0x1000:0 = 0x10000)
 KERNEL_OFFSET  equ 0x0000   ; Offset within segment
-KERNEL_SECTORS equ 2        ; Kernel size in sectors
+%ifndef KERNEL_SECTORS
+KERNEL_SECTORS equ 2        ; Kernel size in sectors (overridden by Makefile)
+%endif
 START_SECTOR   equ 2        ; First sector of kernel
 
 start:
@@ -105,6 +107,7 @@ load_kernel:
     mov cx, 127                     ; If more than 127 sectors, read 127
 .no_size_adjust:
     mov al, cl                      ; Sectors to read in AL
+    mov [sectors_to_read], al       ; BIOS does not guarantee AL is preserved
 
     ; Set up registers for INT 13h, function 02h
     mov ah, 0x02                    ; BIOS read sectors
@@ -124,6 +127,8 @@ load_kernel:
     
     ; Update remaining sectors
     pop cx                          ; Restore remaining count
+    xor ax, ax
+    mov al, [sectors_to_read]
     sub cx, ax                      ; Subtract sectors read
     
     ; Update segment for next batch
@@ -167,6 +172,7 @@ current_segment   dw KERNEL_SEGMENT ; Current segment for loading
 current_cylinder  db 0              ; Current cylinder
 current_head      db 0              ; Current head
 current_sector    db START_SECTOR   ; Start from sector 2
+sectors_to_read   db 0              ; Number of sectors requested in this batch
 
 ; Messages
 msg          db "eshcoreos loading...", 13, 10, 0

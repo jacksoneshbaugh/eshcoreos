@@ -4,9 +4,9 @@ A hobbyist OS built for understanding
 
 ## About
 
-As a sophomore computer science student, I felt an urge to understand some of the more low-level things that our systems do. There's no better way to understand exactly what things do than to build them, so I decided that in pursuit of an understanding of exactly how operating systems work, I'd implement my own. I also decided to record the things I learned along the way—check out the [`devlog.md`](./devlog.md) file!
+As a sophomore computer science student, I felt an urge to understand some of the more low-level things that our systems do. There's no better way to understand exactly what things do than to build them, so I decided that in pursuit of an understanding of exactly how operating systems work, I'd implement my own. I also decided to record the things I learned along the way—check out the [`devlog.md`](./docs/devlog.md) file!
 
-The operating system itself is designed to run in `QEMU` and is compiled in x86 assembly.
+The operating system itself is designed to run in `QEMU` and currently combines an x86 bootloader, a small protected-mode C kernel, VGA text output, CPU exception handling, remapped hardware IRQs, and a PIT-based timer tick.
 
 ## Requirements
 
@@ -38,8 +38,21 @@ To build eshcoreos and run it in `QEMU`:
 
 ```bash
 make
-qemu-system-i386 -hda os-image.bin
+make run
 ```
+
+Build artifacts are written to `build/`, including the final disk image at `build/os-image.bin`.
+
+## Project Layout
+
+- `boot/`: 16-bit bootloader code that loads the kernel and enters protected mode
+- `kernel/`: freestanding C and assembly kernel code
+- `docs/`: development checklist and learning log
+- `build/`: generated object files, kernel binaries, and disk image
+
+## Current Status
+
+eshcoreos currently boots into 32-bit protected mode, writes to VGA text memory, installs an IDT for CPU exceptions and hardware IRQs, remaps the PIC, programs the PIT at 100 Hz, and prints a simple timer heartbeat from IRQ0.
 
 ## About Me
 
